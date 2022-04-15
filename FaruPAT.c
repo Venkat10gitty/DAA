@@ -36,13 +36,11 @@ int go(int start, int end, int need)
 
 int main()
 {
-    char s;
-    scanf("%d", &L);
-    // while (scanf(" %s", str) == 1)
-    // {
-    //     L = strlen(str);
-    //     memset(isPossible, -1, sizeof(isPossible));
-    //     go(0, L - 1, 'a');
-    // }
+    while (scanf(" %s", str) == 1)
+    {
+        L = strlen(str);
+        memset(isPossible, -1, sizeof(isPossible));
+        go(0, L - 1, 'a');
+    }
     return 0;
 }
