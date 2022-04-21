@@ -3,15 +3,9 @@ using namespace std;
 #define N 4
 void printBoard(int board[N][N]) {
    for (int i = N-1; i >= 0; i--) {
-      int flag = 0; 
       for (int j = 0; j < N; j++)
-         flag++;
-         if(flag == N)
-            cout << board[i][j];
-            cout << endl;
-         else
-            cout << board[i][j] << " ";
-            cout << endl;
+         cout << board[i][j] << " ";
+         cout << endl;
    }
 }
 bool isValid(int board[N][N], int row, int col) {
