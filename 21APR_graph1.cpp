@@ -13,26 +13,31 @@ int main()
             cin>>arr[i][j];
         }   
     }
-    for (int i = 0; i < size; i++)                 
-    {
-        for (int j = 0; j < size; j++)
-        {
-            cout<<arr[i][j]<<" ";
-        }   
-        cout<<endl;
-    }
-    check(arr,size);
-}
-void check(int arr[][], int n) {
-    int x, y;
-    for(x = 0; x < n; x++) {
-        for(y = 0; y < n; y++) {
+    int x=0, y=0;
+    int flag = 0;
+    for(int i = 0; i<size; i++) {
+            
             if(arr[x][y] == 1) {
-                cout<<"no";
+                flag++;
                 break;
             }
+            x++;
+            y++;
         }
+    if(flag == 0) {
+        cout<<"yes\n";
     }
     else
-        cout<<"yes";
+        cout<<"no\n";
+
+    
+    for(int i = 0; i < size; i++) {
+        int count = 0;
+        for(int j = 0; j < size; j++) {
+            if(arr[i][j] == 1) {
+                count++;
+            }
+        }
+        cout<<count<<" ";
+    }
 }
