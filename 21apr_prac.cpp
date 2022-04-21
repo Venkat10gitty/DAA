@@ -2,7 +2,7 @@
 using namespace std;
 #define N 4
 void printBoard(int board[N][N]) {
-   for (int i = 0; i < N; i++) {
+   for (int i = N-1; i >= 0; i--) {
       for (int j = 0; j < N; j++)
          cout << board[i][j] << " ";
          cout << endl;
