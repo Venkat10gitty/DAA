@@ -19,8 +19,8 @@ void search(char* pat, char* txt)
 
 int main()
 {
-	char txt[] = "AABAACAADAABAAABAA";
-	char pat[] = "AABA";
+	char txt[] = "abcabaabcabac";
+	char pat[] = "abaa";
 	search(pat, txt);
 	return 0;
 }
