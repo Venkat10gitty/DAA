@@ -40,9 +40,9 @@ int main()
     for(int j = 0; j<size; j++) {
         cin>>val[j];
     }
-        int W;
-        cin>>W;
-        cout<<knapSack(W, wt, val, size)<<endl;
+    int W;
+    cin>>W;
+    cout<<knapSack(W, wt, val, size)<<endl;
     
 	return 0;
 }
