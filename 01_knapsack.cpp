@@ -1,24 +1,16 @@
 #include <iostream>
-// A dynamic programming based
-// solution for 0-1 Knapsack problem
-#include <bits/stdc++.h>
+#include <cstring>
+#include <vector>
 using namespace std;
-
-// A utility function that returns
-// maximum of two integers
 int max(int a, int b)
 {
 	return (a > b) ? a : b;
 }
 
-// Returns the maximum value that
-// can be put in a knapsack of capacity W
 int knapSack(int W, int wt[], int val[], int n)
 {
 	int i, w;
-	vector<vector<int>> K(n + 1, vector<int>(W + 1));
-
-	// Build table K[][] in bottom up manner
+	vector<vector<int> > K(n + 1, vector<int>(W + 1));
 	for(i = 0; i <= n; i++)
 	{
 		for(w = 0; w <= W; w++)
@@ -38,13 +30,21 @@ int knapSack(int W, int wt[], int val[], int n)
 
 int main()
 {
-	int val[] = { 60, 100, 120 };
-	int wt[] = { 10, 20, 30 };
-	int W = 50;
-	int n = sizeof(val) / sizeof(val[0]);
-	
-	cout << knapSack(W, wt, val, n);
-	
+    int size;
+    cin>>size;
+    for(int i = 0; i<size; i++) {
+        int wt[size];
+        int val[size];
+        for(int j = 0; j<size; j++) {
+            cin>>wt[j];
+        }
+        for(int j = 0; j<size; j++) {
+            cin>>val[j];
+        }
+        int W;
+        cin>>W;
+        cout<<knapSack(W, wt, val, size)<<endl;
+    }
 	return 0;
 }
 
