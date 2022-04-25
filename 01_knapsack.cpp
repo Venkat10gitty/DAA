@@ -32,19 +32,18 @@ int main()
 {
     int size;
     cin>>size;
+    int wt[size];
+    int val[size];
     for(int i = 0; i<size; i++) {
-        int wt[size];
-        int val[size];
-        for(int j = 0; j<size; j++) {
-            cin>>wt[j];
-        }
-        for(int j = 0; j<size; j++) {
-            cin>>val[j];
-        }
+        cin>>wt[i];
+    }
+    for(int j = 0; j<size; j++) {
+        cin>>val[j];
+    }
         int W;
         cin>>W;
         cout<<knapSack(W, wt, val, size)<<endl;
-    }
+    
 	return 0;
 }
 
