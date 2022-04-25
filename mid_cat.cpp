@@ -19,7 +19,11 @@ void printPairs(int *array, int size, int K){
     for(i = 0; i < size; i++) {       
         for(j = i+1; j < size; j++) {
             if(abs(array[i] - array[j]) == K) {
-               printf("%d\n%d\n", array[i], array[j]);
+                if (array[j]>array[i]) {
+                    printf("%d\n%d\n", array[i],array[j]);
+                }
+                else 
+                    printf("%d\n%d\n", array[j], array[i]);
             }
         }
     }
@@ -33,7 +37,6 @@ int main(){
         scanf("%d", &arr[i]);
     }
 
-    //int arr[4] = {2,8,4,5}; 
     int i, small, large;
     small = arr[0];
     large = arr[0];
