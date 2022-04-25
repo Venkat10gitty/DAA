@@ -13,7 +13,7 @@ void search(char* pat, char* txt)
 				break;
 
 		if (j == M) 
-			printf("Pattern found at index %d \n", i);
+			printf("%d", i);
 	}
 }
 
