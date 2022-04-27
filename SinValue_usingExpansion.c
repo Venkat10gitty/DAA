@@ -21,7 +21,7 @@ int main()
 	scanf("%d",&limit);
 
 	Q=x;
-	x = x*(3.1415/180);
+	//x = x*(3.1415/180);
 
 	for(i=1,j=1;i<=limit;i++,j=j+2)
 	{
