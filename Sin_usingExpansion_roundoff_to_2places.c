@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 int fac(int x)
 {
@@ -13,12 +14,10 @@ int main()
 {
 	float x,Q,sum=0;
 	int i,j,limit,limit_trial;
-
-	printf("Enter the value of x of sinx series: ");
+	
+	scanf("%d",&limit_trial);
 	scanf("%f",&x);
 
-	printf("Enter the limit upto which you want to expand the series: ");
-	scanf("%d",&limit_trial);
     limit = limit_trial+1;
 
 	Q=x;
@@ -31,7 +30,7 @@ int main()
 		else
 			sum=sum-pow(x,j)/fac(j);
 	}
-
-	printf("Sin(%0.1f): %f",Q,sum);
+	
+	printf("%.2f", ((signed long)(sum * 100) * 0.01f));
 	return 0;
 }
