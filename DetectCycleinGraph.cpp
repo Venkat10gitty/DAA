@@ -1,91 +1,83 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <list>
+#include <map>
+#include <set>
+#include <stack>
 using namespace std;
- 
-// Data structure to store a graph edge
-struct Edge {
-    int src, dest;
-};
- 
-// A class to represent a graph object
-class Graph
+class graph
 {
-public:
- 
-    // a vector of vectors to represent an adjacency list
-    vector<vector<int>> adjList;
- 
-    // Graph Constructor
-    Graph(vector<Edge> const &edges, int n)
-    {
-        // resize the vector to hold `n` elements of type `vector<int>`
-        adjList.resize(n);
- 
-        // add edges to the undirected graph
-        for (auto &edge: edges)
-        {
-            adjList[edge.src].push_back(edge.dest);
-            adjList[edge.dest].push_back(edge.src);
-        }
-    }
+    int v;
+    list<int> *adjacencylist;
+    bool checkcycle2(int v, bool vertvisited[], bool *recursionst);
+    public:
+    graph(int v);
+    void drawedge(int v, int u);
+    bool checkcycle();
 };
- 
-// Perform DFS on the graph and returns true if any back-edge is found in the graph
-bool DFS(Graph const &graph, int v, vector<bool> &discovered, int parent)
+graph::graph(int v)
 {
-    // mark the current node as discovered
-    discovered[v] = true;
- 
-    // do for every edge (v, w)
-    for (int w: graph.adjList[v])
+    this->v=v;
+    adjacencylist= new list<int>[v];
+}
+void graph::drawedge(int v, int u)
+{
+    adjacencylist[v].push_back(u);
+}
+bool graph::checkcycle2(int v, bool vertvisited[], bool *recursionst)
+{
+    if(vertvisited[v]==false)
     {
-        // if `w` is not discovered
-        if (!discovered[w])
+        vertvisited[v]=true;
+        recursionst[v]=true;
+        list<int>::iterator itr;
+        for(itr=adjacencylist[v].begin();itr!=adjacencylist[v].end();++itr)
         {
-            if (DFS(graph, w, discovered, v)) {
+            if(!vertvisited[*itr]&&checkcycle2(*itr, vertvisited, recursionst))
+            {
+                return true;
+            }
+            else if(recursionst[*itr])
+            {
                 return true;
             }
         }
- 
-        // if `w` is discovered, and `w` is not a parent
-        else if (w != parent)
+    }
+    recursionst[v]=false;
+    return false;
+}
+bool graph::checkcycle()
+{
+    bool *vertvisited=new bool[v];
+    bool *recursionst=new bool[v];
+    for(int i=0;i<v;i++)
+    {
+        vertvisited[i]=false;
+        recursionst[i]=false;
+    }
+    for(int i=0;i<v;i++)
+    {
+        if(checkcycle2(i, vertvisited, recursionst))
         {
-            // we found a back-edge (cycle)
             return true;
         }
     }
- 
-    // No back-edges were found in the graph
     return false;
 }
- 
 int main()
 {
-    // initialize edges
-    vector<Edge> edges =
-    {
-        {0, 1}, {0, 6}, {0, 7}, {1, 2}, {1, 5}, {2, 3},
-        {2, 4}, {7, 8}, {7, 11}, {8, 9}, {8, 10}, {10, 11}
-        // edge (10, 11) introduces a cycle in the graph
-    };
- 
-    // total number of nodes in the graph (0 to 11)
-    int n = 12;
- 
-    // build a graph from the given edges
-    Graph graph(edges, n);
- 
-    // to keep track of whether a vertex is discovered or not
-    vector<bool> discovered(n);
- 
-    // Perform DFS traversal from the first vertex
-    if (DFS(graph, 0, discovered, -1)) {
-        cout << "The graph contains a cycle";
+    int n1,n2;
+    int size;
+    cin>>size;
+    graph g(size);
+    for(int i = 0; i<(size*2);i++) {
+        cin>>n1>>n2;
+        g.drawedge(n1,n2);
     }
-    else {
-        cout << "The graph doesn't contain any cycle";
-    }
- 
+    if(g.checkcycle())
+        cout << "yes";
+    else
+        cout << "no";
     return 0;
 }
