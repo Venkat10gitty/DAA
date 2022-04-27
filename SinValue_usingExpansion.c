@@ -12,13 +12,14 @@ int fac(int x)
 int main()
 {
 	float x,Q,sum=0;
-	int i,j,limit;
+	int i,j,limit,limit_trial;
 
 	printf("Enter the value of x of sinx series: ");
 	scanf("%f",&x);
 
 	printf("Enter the limit upto which you want to expand the series: ");
-	scanf("%d",&limit);
+	scanf("%d",&limit_trial);
+    limit = limit_trial+1;
 
 	Q=x;
 	//x = x*(3.1415/180);
